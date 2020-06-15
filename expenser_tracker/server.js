@@ -3,12 +3,14 @@ const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
 
+const connectDB = require('./config/db.js')
+
 dotenv.config({
 	path: './config/config.env',
 });
 
 //Routes
-const transactions = require('./routes/transactions.js')
+const transactions = require('./routes/transactions.js');
 
 //Express Init
 const app = express();
@@ -16,6 +18,10 @@ const app = express();
 //Call Routes
 app.use('/api/v1/transactions', transactions);
 
-
-const PORT = process.env.PORT
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold));
+const PORT = process.env.PORT;
+app.listen(
+	PORT,
+	console.log(
+		`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+	)
+);
